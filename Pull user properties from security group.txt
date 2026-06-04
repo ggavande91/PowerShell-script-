@@ -1,0 +1,23 @@
+Script to pull user and its properties from one or multiple Security group.
+
+$groups = @("AD group Name")
+$outputFilePath = "C:\Temp\file.csv"
+
+$members = @()
+
+foreach ($group in $groups) {
+    $groupDN = (Get-ADGroup $group).DistinguishedName
+
+    $groupMembers = Get-ADUser -LDAPFilter "(memberOf=$groupDN)" -Properties Enabled, SamAccountName, DisplayName, GivenName, sn, streetAddress, l, st, title, company, physicalDeliveryOfficeName, department
+
+    $groupMembers | ForEach-Object {
+        $members += [PSCustomObject]@{
+            GroupName = $group
+            SamAccountName = $_.SamAccountName
+            Enabled = $_.Enabled
+            DisplayName = $_.DisplayName
+        }
+    }
+}
+
+$members | Export-Csv -Path $outputFilePath -NoTypeInformation

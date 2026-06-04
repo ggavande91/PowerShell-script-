@@ -1,0 +1,5 @@
+If patches are not getting install you can follow -
+
+
+Dism /image:C:\ /cleanup-image /revertpendingactions
+Dism /cleanup-image /scanhealth /Image:g:\

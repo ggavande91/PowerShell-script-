@@ -1,0 +1,7 @@
+How to start Serial console
+cmd
+ch -si 1
+
+To solve serial access issue -
+Boot diagostics -> change storage name
+Enable EMS : To solve the Issue over the Serial Console

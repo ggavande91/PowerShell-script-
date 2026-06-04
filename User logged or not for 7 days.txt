@@ -1,0 +1,11 @@
+Find out user login details for last 7 days
+
+Get-WinEvent -FilterHashtable @{
+    LogName='Security'
+    ID=4624
+    StartTime=(Get-Date).AddDays(-7)
+} |
+Where-Object { $_.Properties[5].Value -eq "Username_Here" } |
+Select-Object TimeCreated,
+    @{Name='Username'; Expression={$_.Properties[5].Value}},
+    @{Name='LogonType'; Expression={$_.Properties[8].Value}}

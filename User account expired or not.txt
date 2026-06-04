@@ -1,0 +1,3 @@
+To find whether user password is expired or not -
+
+Get-ADUser -Identity "user_ID" -Properties "PasswordExpired" | Select-Object Name, PasswordExpired

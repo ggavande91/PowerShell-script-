@@ -1,0 +1,20 @@
+VM power state is unknown
+
+https://support.citrix.com/article/CTX131267/error-power-state-unknown-cdseventhostingfailedpoweraction-in-xendesktop
+
+
+To find VDI UID 
+
+asnp Citrix*
+$ErrorActionPreference=Continue
+Get-ChildItem -Path XdHyp:\ -force -recurse | ?{ $_.IsMachine } | Out-File –Filepath c:\xdhyp.txt
+
+To change machine UID -
+Set-BrokerMachine -MachineName 'MyDomain\MyMachine' -HostedMachineId
+
+
+To find VDI is in unknown state
+Get-BrokerMachine -PowerState Unknown
+
+Update hypervisor connection
+Update-HypHypervisorConnection -LiteralPath "XDHyp:\connections\Connection"

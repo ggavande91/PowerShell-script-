@@ -1,0 +1,6 @@
+If NO network Adapter :
+netsh interface show interface
+take the name of the Network adapter and RUN the below CMD.
+Enable-NetAdapter -Name "YOUR-ADAPTER-NAME" -Confirm:$false
+
+Enable-NetAdapter -Name "Ethernet" -Confirm:$false

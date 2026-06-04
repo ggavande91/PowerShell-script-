@@ -1,0 +1,10 @@
+Export AD group members-
+
+Get-ADGroupMember -Identity "Group Name" | Select-Object Name, SamAccountName, DistinguishedName | Export-Csv -Path "C:\Temp\Desktop.csv" -NoTypeInformation
+
+If Objects are huge then use below command -
+
+
+$groupName = "Group Names"
+$Group = Get-ADGroup -Identity $GroupName
+Get-ADUser -Filter "*" -Properties MemberOf | Where-Object { $_.MemberOf -contains $Group.DistinguishedName } | Export-Csv -Path "C:\Temp\Desktop.csv" -NoTypeInformation

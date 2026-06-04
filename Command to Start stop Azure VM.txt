@@ -1,0 +1,6 @@
+Command to start & stop VMs
+
+Get-Azsubscription
+az account set --subscription <subscription-id>
+Stop-AzVM -ResourceGroupName RGName -Name VMName -force -verbose -debug
+Start-AzVM -ResourceGroupName RGName -Name VMName -verbose -debug

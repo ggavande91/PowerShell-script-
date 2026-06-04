@@ -1,0 +1,6 @@
+To check if acount is expired or not
+
+Get-ADUser -Identity "User_ID" -Properties AccountExpirationDate, msDS-UserPasswordExpiryTimeComputed |
+Select-Object Name, 
+              AccountExpirationDate,
+              @{Name="PasswordExpiryDate";Expression={[datetime]::FromFileTime($_."msDS-UserPasswordExpiryTimeComputed")}}

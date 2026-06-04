@@ -1,0 +1,5 @@
+To check if RDP is allowed or not
+
+Goto Connection troubleshoot- scroll down & click on Run TEST which actually tells if you have RDP enabled or not if not enable use below command to enable the same
+ 
+netsh advfirewall firewall add rule name="RDP" dir=in action=allow protocol=TCP localport=3389

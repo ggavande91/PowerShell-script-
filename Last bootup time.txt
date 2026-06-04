@@ -1,0 +1,10 @@
+Last Boot up time script
+#Save machine name in Text format on given location & remove domain name
+
+$serverlist = Get-Content -Path C:\Temp\file.txt
+
+
+Foreach ($name in $serverlist) 
+{
+    Get-CimInstance win32_operatingsystem -ComputerName $name |
+        select csname,LastBootUpTime | Export-Csv c:\Temp\VMuptime.csv -NoTypeInformation -Append
